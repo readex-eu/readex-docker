@@ -1,5 +1,5 @@
 ## readex-docker
-This repository provides a docker file that enables you to create a READEX docker image.
+This repository provides a docker file that enables you to create a docker image to use the READEX tool suite (www.readex.eu).
 
 ### Steps to create docker image:
 1. Install [Docker](https://www.docker.com/).
@@ -12,5 +12,7 @@ This repository provides a docker file that enables you to create a READEX docke
 
    `docker run -it --rm docker/readex_gcc7.3.0`
 
+#### Note
+All environment variables that are required to use the individual tools in the READEX tool suite are set in the docker image.
 
-For questions, contact us at https://www.readex.eu/index.php/contact/
+For questions, contact us at https://www.readex.eu/index.php/contact/, or the author (Venkatesh Kannan, venkatesh.kannan@ichec.ie).
