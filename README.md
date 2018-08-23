@@ -11,3 +11,6 @@ This repository provides a docker file that enables you to create a READEX docke
 ### Steps to run docker image:
 
    `docker run -it --rm docker/readex_gcc7.3.0`
+
+
+For questions, contact us at https://www.readex.eu/index.php/contact/
