@@ -90,7 +90,7 @@ ENV LD_LIBRARY_PATH=/root/readex/scorep/scorep_gcc7.3.0/lib:$LD_LIBRARY_PATH
 
 # Install PTF READEX
 RUN cd /root/readex && \
-    GIT_SSL_NO_VERIFY=true git clone -b readex https://readex_unit_tests:readex_unit_tests@periscope.in.tum.de/git/Periscope.git Periscope_READEX && \
+    git clone https://github.com/readex-eu/readex-ptf.git Periscope_READEX && \
     cd Periscope_READEX && \
     ./bootstrap && rm -rf build_gcc7.3.0 && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
     ../configure '--prefix=/root/readex/ptf/ptf_gcc7.3.0' \
@@ -120,9 +120,8 @@ ENV PATH=/root/readex/ptf/ptf_gcc7.3.0/bin:$PATH
 ENV LD_LIBRARY_PATH=/root/readex/ptf/ptf_gcc7.3.0/lib:$LD_LIBRARY_PATH
 
 # Install RRL
-# curl --verbose --upload-file ./RRL.tar.gz https://transfer.sh/RRL.tar.gz
-RUN wget -P /root/readex "https://transfer.sh/m2f5O/RRL.tar.gz" && \
-    cd /root/readex && tar -xzvf RRL.tar.gz && rm -rf RRL.tar.gz && \
+RUN cd /root/readex && \
+    git clone https://github.com/readex-eu/readex-rrl.git RRL && \
     cd RRL* && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
     cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/rrl/rrl_gcc7.3.0 \
               -DDISABLE_CALIBRATION=ON \
@@ -148,9 +147,8 @@ RUN cd /root/readex/dependencies && \
 
 # Install PCPs
 # Requires x86_adapt or msr-safe or Likwid; this installation uses Likwid
-# curl --verbose --upload-file ./PCPs.tar.gz https://transfer.sh/PCPs.tar.gz
-RUN wget -P /root/readex "https://transfer.sh/YPTNn/PCPs.tar.gz" && \
-    cd /root/readex && tar -xzvf PCPs.tar.gz && rm -rf PCPs.tar.gz && \
+RUN cd /root/readex && \
+    git clone https://github.com/readex-eu/PCPs.git PCPs && \
     cd PCPs* && \
     sh build.sh "/root/readex/pcp/pcp_gcc7.3.0"
 
@@ -163,9 +161,8 @@ ENV PATH=/root/readex/pcp/pcp_gcc7.3.0/bin:$PATH
 ENV LD_LIBRARY_PATH=/root/readex/pcp/pcp_gcc7.3.0/lib:$LD_LIBRARY_PATH
 
 # Install ATP
-# curl --verbose --upload-file ./ATP.tar.gz https://transfer.sh/ATP.tar.gz
-RUN wget -P /root/readex "https://transfer.sh/mlAXS/ATP.tar.gz" && \
-    cd /root/readex && tar -xzvf ATP.tar.gz && rm -rf ATP.tar.gz && \
+RUN cd /root/readex && \
+    git clone https://github.com/readex-eu/readex-atp.git ATP && \
     cd ATP* && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
     cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/atp/atp_gcc7.3.0 \
               -DCMAKE_BUILD_TYPE=Debug && \
@@ -181,9 +178,8 @@ ENV PATH=/root/readex/atp/atp_gcc7.3.0/bin:$PATH
 ENV LD_LIBRARY_PATH=/root/readex/atp/atp_gcc7.3.0/lib:$LD_LIBRARY_PATH
 
 # Install Cluster_Prediction
-# curl --verbose --upload-file ./Cluster_Prediction.tar.gz https://transfer.sh/Cluster_Prediction.tar.gz
-RUN wget -P /root/readex "https://transfer.sh/ERv9Q/Cluster_Prediction.tar.gz" && \
-    cd /root/readex && tar -xzvf Cluster_Prediction.tar.gz && rm -rf Cluster_Prediction.tar.gz && \
+RUN cd /root/readex && \
+    git clone https://github.com/readex-eu/readex-clusterprediction.git Cluster_Prediction && \
     cd Cluster_Prediction* && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
     cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/cluster_prediction/cluster_prediction_gcc7.3.0 && \
     make && \
