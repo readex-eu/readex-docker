@@ -181,7 +181,9 @@ ENV LD_LIBRARY_PATH=/root/readex/atp/atp_gcc7.3.0/lib:$LD_LIBRARY_PATH
 RUN cd /root/readex && \
     git clone https://github.com/readex-eu/readex-clusterprediction.git Cluster_Prediction && \
     cd Cluster_Prediction* && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
-    cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/cluster_prediction/cluster_prediction_gcc7.3.0 && \
+    cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/cluster_prediction/cluster_prediction_gcc7.3.0 \
+              −DCMAKE_PREFIX_PATH=/usr/bin −DCMAKE_PREFIX_PATH=/usr/include \
+              −DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu && \
     make && \
     make install
 
@@ -197,9 +199,7 @@ ENV LD_LIBRARY_PATH=/root/readex/cluster_prediction/cluster_prediction_gcc7.3.0/
 RUN cd /root/readex && \
     git clone https://github.com/score-p/scorep_plugin_x86_energy.git -b x86_energy_v_2 && \
     cd scorep_plugin_x86_energy && rm -rf build_gcc7.3.0 && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
-    cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/dependencies/scorep_plugin_x86_energy_gcc7.3.0 \
-              −DCMAKE_PREFIX_PATH=/usr/bin −DCMAKE_PREFIX_PATH=/usr/include \
-              −DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu && \
+    cmake ../ -DCMAKE_INSTALL_PREFIX=/root/readex/dependencies/scorep_plugin_x86_energy_gcc7.3.0 && \
     make && \
     make install
 
