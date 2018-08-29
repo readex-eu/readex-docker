@@ -59,8 +59,9 @@ ENV PATH=/root/readex/dependencies/scorep-dev/bin:$PATH
 ENV LD_LIBRARY_PATH=/root/readex/dependencies/scorep-dev/lib:$LD_LIBRARY_PATH
 
 # Install Score-P READEX
+# svn co https://silc.zih.tu-dresden.de/svn/silc-root/branches/TRY_READEX_online_access_call_tree_extensions ScoreP_READEX --username scorep --password foo42bar
 RUN cd /root/readex && \
-    svn co https://silc.zih.tu-dresden.de/svn/silc-root/branches/TRY_READEX_online_access_call_tree_extensions ScoreP_READEX --username scorep --password foo42bar &&\
+    git clone https://github.com/readex-eu/readex-scorep.git ScoreP_READEX && \
     cd ScoreP_READEX && \
     ./bootstrap && rm -rf build_gcc7.3.0 && mkdir build_gcc7.3.0 && cd build_gcc7.3.0 && \
     ../configure '--prefix=/root/readex/scorep/scorep_gcc7.3.0' \
